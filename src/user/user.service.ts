@@ -25,8 +25,6 @@ export class UserService {
 
     try {
       const res: any = await this.helpersService.makePostHttpRequest(urlSession, requestToken);
-
-      console.info('res.data', res.data)
       return res.data;
     } catch(err) {
       throw new HttpException(err.response.data, err.response.status);

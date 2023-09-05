@@ -20,6 +20,7 @@ export class MovieModelService {
    */
   async saveRatings(media) {
     const movieExists = await this.movieModel.findOne(({ id: media.id } )).exec()
+
     if (!movieExists) {
       const newMovie = await new this.movieModel(media);
       await newMovie.save();
@@ -52,9 +53,11 @@ export class MovieModelService {
     if (!movieExists) {
       const newMovie = await new this.movieModel(media);
       await newMovie.save();
+
     } else {
       movieExists.watchlist = media.watchlist;
       await movieExists.save();
     }
+
   }
 }

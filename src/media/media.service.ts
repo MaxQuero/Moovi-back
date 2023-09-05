@@ -279,7 +279,6 @@ export class MediaService {
     await this.episodeModelService.saveEpisodeRatings(episodeId, seasonNumber, episodeNumber, rating);
   }
 
-  //TODO : refacto avec rating et wathclist + pour movie et rtvshow (et season et episode?) -> quasi les memes fonctions
   async patchFavorites(media) {
 
     if (media.type === MediaEnum.Movie) {
@@ -374,7 +373,6 @@ export class MediaService {
 
   async processAccountData(media, allMedias) {
     const { mediaRating, mediaFavorites, mediaIsWatchlist } = await this.getMediaAccountStates(media, allMedias);
-    console.info('infos account', mediaRating, mediaFavorites, mediaIsWatchlist)
     return {
       rating: mediaRating,
       favorite: mediaFavorites,
@@ -387,11 +385,7 @@ export class MediaService {
    * TODO : Faire en sorte de n'executer cette fonction que si media et le type de AllMedias sont identique ?
    */
   getMediaAccountStates(media: Movie | TvShow, allMedias: any) {
-    console.info('media', typeof media.id)
-    console.info('find', allMedias)
     const mediaDb: any = (!media?.rating || !media?.favorite || !media?.watchlist) && allMedias.find(el => el.id === media.id);
-
-    console.info('mediaDb', mediaDb)
     const mediaRating = mediaDb?.rating
     const mediaFavorites = mediaDb?.favorite
     const mediaIsWatchlist = mediaDb?.watchlist

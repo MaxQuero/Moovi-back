@@ -86,18 +86,15 @@ export class Movie {
   @Field({nullable: true})
   readonly logo: Image;
 
-  // TODO a check
   @Field(type => [Movie], {nullable: true})
   recommendations: Movie[]
 
-//TODO : rattacher a la base
   @Field(type => Int, {nullable: true})
   rating: number;
-
 
   @Field({nullable: true})
   favorite: boolean;
 
-  @Field({nullable: true})
+  @Field(type => Boolean, {nullable: true})
   watchlist: boolean;
 }

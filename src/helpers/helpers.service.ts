@@ -12,7 +12,6 @@ export class HelpersService {
   /**
    * Add to watch list
    */
-  // TODO: refacti avec rating et watchlist (+ mutu avec moiovie/ tv show/ season et episode)
   async addToWatchlist(media, accountId: number, sessionId: string) {
     const addToWatchlistUrl = `${process.env.API_DEFAULT}/account/${accountId}/watchlist?api_key=${process.env.API_KEY}&session_id=${sessionId}`;
     const res = await this.makePostHttpRequest(addToWatchlistUrl,
@@ -57,7 +56,6 @@ export class HelpersService {
    */
   async makePostHttpRequest(url: string, data?: any) {
     try {
-      console.info('ici')
       return await this.httpService.post(url,
         data,
         {
@@ -65,11 +63,9 @@ export class HelpersService {
           headers: {
             'Content-Type': 'application/json',
           },
-          transformResponse: [(data, headers) => {
-            console.info('parsedData', data)
+          transformResponse: [(data) => {
             const parsedData = JSON.parse(data)
             const formattedData = this.camelize(parsedData);
-            console.info('formattedData', formattedData)
             return formattedData;
           }]
         }).toPromise();

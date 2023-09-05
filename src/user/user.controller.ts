@@ -11,21 +11,15 @@ export class UserController {
 
     @Post('create')
     async createUser(@Body() body): Promise<any> {
-        console.info('body', body)
         const sessionId = await this.userService.getSession(body).then(
             (session) => {
-                console.info('session', session)
-
                 if (session.success) {
-                    console.info('return')
                     return session.sessionId;
                 } else {
                     //TODO: error
                 }
             }
         );
-
-        console.info('sessionId', sessionId)
 
 
         return this.userService.getUserFromSessionId(sessionId).then(

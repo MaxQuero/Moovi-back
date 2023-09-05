@@ -101,8 +101,6 @@ export class MediaResolvers {
       throw new NotFoundException(id);
     }
 
-
-    console.info('media', media)
     return media
   }
 

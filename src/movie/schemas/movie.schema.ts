@@ -4,5 +4,7 @@ const Schema = mongoose.Schema;
 
 export const MovieSchema = new Schema({
     id: Number,
-    rating: Number
+    rating: Number,
+    favorite: Boolean,
+    watchlist: Boolean
 });
